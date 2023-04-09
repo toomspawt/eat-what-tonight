@@ -11,3 +11,6 @@ Since the dawn of time, civilizations rise and fall, philosophers come and go, b
 
 And just as the name, which is word-by-word translated from the classical Asian quote “Tối nay ăn gì” (also known as 晚上吃啥/今夜は何が食べたいですか), the project serves one and only philosophical purpose - to find out what to eat for dinner.
 
+
+https://api.edamam.com/api/recipes/v2?type=public&app_id=d70fdf06&app_key=4bbfb3bca8ebfe0e162ae8af5a0b2844&calories=0-1000&random=true
+https://api.edamam.com/api/recipes/v2?type=public&app_id=d70fdf06&app_key=4bbfb3bca8ebfe0e162ae8af5a0b2844&health=alcohol-free&health=dairy-free&calories=0-1000&random=true
