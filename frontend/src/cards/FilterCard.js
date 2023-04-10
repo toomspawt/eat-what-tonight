@@ -16,7 +16,6 @@ function FilterRange(props) {
     )
 }
 
-
 function FilterTF(props) {
     return (
         <div className="filter-tf">
@@ -34,8 +33,8 @@ function FilterTF(props) {
     )
 }
 
-
 function FilterCard(props) {
+
     return (
         <div className='card filter-card' onClick={props.onClick}>
             <FilterRange

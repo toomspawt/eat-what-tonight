@@ -1,12 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'
-import './sample.css'
 import './static/css/index.css'
 import FilterCard from './cards/FilterCard';
 import CuisineCard from './cards/CuisineCard';
 import LoginCard from './cards/LoginCard';
-import UserCard from './cards/UserCard';
+import { AuthProvider } from "./context/AuthContext";
+import { useContext } from "react";
+import AuthContext from "./context/AuthContext";
+/*
+function initializeFilters() {
+  const { user } = useContext(AuthContext);
+  const defaultFilter = user ? {
+    caloriesMin: 20,
+    caloriesMax: 2000,
+    vegan: false,
+    alcoholFree: false,
+    dairyFree: false,
+  } : {
+    caloriesMin: 20,
+    caloriesMax: 2000,
+    vegan: true,
+    alcoholFree: true,
+    dairyFree: true,
+  }
 
+  return defaultFilter;
+}
+*/
 class App extends React.Component{
   constructor(props) {
     super(props);
@@ -18,7 +38,6 @@ class App extends React.Component{
             alcoholFree: false,
             dairyFree: false,
           },
-          isLoggedIn: false,
       }
 
       this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -35,7 +54,9 @@ class App extends React.Component{
     return (
         <div className='container'>
             <div className='card-container'>
+              <AuthProvider>
                 
+                <LoginCard />
 
                 <FilterCard 
                     filters={this.state.filters}
@@ -46,7 +67,7 @@ class App extends React.Component{
                   filters={this.state.filters}
                   showCuisine={false}
                 />
-
+              </AuthProvider>
             </div>
         </div>
     )

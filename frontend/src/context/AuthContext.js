@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
         : null
     );
     const [loading, setLoading] = useState(true);
-    const history = useHistory();
+    //const history = useHistory();
 
     const loginUser = async (username, password) => {
         const response = await fetch("http://127.0.0.1:8000/api/token/", {
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
             setAuthTokens(data);
             setUser(jwt_decode(data.access));
             localStorage.setItem("authTokens", JSON.stringify(data));
-            history.push("/");
+            //history.push("/");
         } else {
             alert("Something went wrong!");
         }
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
             })
         });
         if (response.status === 201) {
-            history.push("/login");
+            //history.push("/login");
         } else {
             alert("Something went wrong!");
         }
@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }) => {
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem("authTokens");
-        history.push("/");
+        //history.push("/");
     };
 
     const contextData = {
