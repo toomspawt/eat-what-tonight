@@ -9,8 +9,12 @@ export default function RegisterCard() {
     let [ showRegister, setShowRegister ] = useState(false)
 
     const handleSubmit = async e => {
-    e.preventDefault();
-    registerUser(username, password, password2);
+        e.preventDefault();
+        try {
+            registerUser(username, password, password2);
+        } catch(err) {
+            console.log(err);
+        }
     };
 
     return !showRegister ? (
@@ -18,7 +22,7 @@ export default function RegisterCard() {
     ) : (
         <div className="card">
             <button onClick={() => setShowRegister(!showRegister)}>X</button>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => {handleSubmit(e); setShowRegister(!showRegister);}}>
                 <h1>Register</h1>
                 <hr />
                 <div>
