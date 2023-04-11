@@ -19,6 +19,7 @@ function FilterRange(props) {
 }
 
 function FilterTF(props) {
+    //console.log(props.value);
     return (
         <div className="filter-tf">
             <span>{props.label}</span>
@@ -26,7 +27,7 @@ function FilterTF(props) {
                 <input 
                     id={props.id} 
                     type="checkbox" 
-                    defaultChecked={props.value}
+                    checked={props.value}
                     onChange={props.onChange}
                     />
                 <span className="slider-round"></span>
@@ -43,18 +44,21 @@ function FilterCard({ user }) {
         alcoholFree: false,
         dairyFree: true,
     });
+
     const api = useAxios();
 
     // if authenticated, get user's filters
     useEffect(() => {
         if (user) {
             const fetchData = async () => {
-            try {
-                const response = await api.get("/filter/");
-                setFilters(response.data.response);
-            } catch {
-                console.log("Something went wrong");
-            }
+                try {
+                    const response = await api.get("/filter/");
+                    setFilters({...response.data.response});
+                    //console.log(response.data.response)
+                    //console.log(filters)
+                } catch {
+                    console.log("Something went wrong");
+                }
             };
             fetchData();
         }
@@ -68,6 +72,8 @@ function FilterCard({ user }) {
                 const response = await api.post("/filter/", {
                     filters: filters
                 })
+                //console.log(filters)
+                console.log(response.data.response)
             } catch {
                 console.log("Something went wrong")
             }
@@ -77,9 +83,9 @@ function FilterCard({ user }) {
     
     const handleChangeInput = (event) => {
         let newFilters = filters;
-        newFilters[event.target.id] = (event.target.type === "checkbox" ? !newFilters[event.target.id] : Number(event.target.value));
+        newFilters[event.target.id] = (event.target.type === "checkbox" ? (event.target.checked) : Number(event.target.value));
         setFilters({...newFilters});
-        //console.log(filters);
+        console.log(filters);
     }
 
     return (
@@ -89,36 +95,36 @@ function FilterCard({ user }) {
                     label="calories (min)"
                     id="caloriesMin"
                     value={filters.caloriesMin}
-                    onChange={handleChangeInput}
+                    onChange={(e) => handleChangeInput(e)}
                 />
                 <FilterRange
                     label="calories (max)"
                     id="caloriesMax"
                     value={filters.caloriesMax}
-                    onChange={handleChangeInput}
+                    onChange={(e) => handleChangeInput(e)}
                 />
                 <FilterTF 
                     label="Vegan" 
                     id='vegan'
                     value={filters.vegan} 
-                    onChange={handleChangeInput}
+                    onChange={(e) => handleChangeInput(e)}
                 />
                 <FilterTF 
                     label="Alcohol Free" 
                     id='alcoholFree'
                     value={filters.alcoholFree} 
-                    onChange={handleChangeInput}
+                    onChange={(e) => handleChangeInput(e)}
                 />
                 <FilterTF 
                     label="Dairy Free" 
                     id='dairyFree'
                     value={filters.dairyFree} 
-                    onChange={handleChangeInput}
+                    onChange={(e) => handleChangeInput(e)}
                 />
 
                 {
                     // "Set as default button, appeared if authenticated"
-                    user && <button onClick={newDefault}>Set as default</button>
+                    user && <button onClick={() => newDefault()}>Set as default</button>
                 }
             </div>
             
@@ -127,6 +133,7 @@ function FilterCard({ user }) {
             />
         </div>
     )
+    
 }
 
 export default FilterCard;

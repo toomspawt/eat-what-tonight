@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
-import UserInfo from "../components/UserInfo";
 
 function UserCard({ user }) {
   const { loginUser, logoutUser } = useContext(AuthContext);
@@ -8,7 +7,7 @@ function UserCard({ user }) {
   // if logged in, say hello
   if (user) return (
     <div className="card">
-      {user && <UserInfo user={user} />}
+      <h1>Hello, {user.username}</h1>
       <h1>You are on home page!</h1>
       <button onClick={logoutUser}>Logout</button>
     </div>

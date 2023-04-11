@@ -52,5 +52,5 @@ def filterEndPoint(request):
         request.user.alcoholFree = filters['alcoholFree']
         request.user.dairyFree = filters['dairyFree']
         request.user.save()
-        return Response({'response': 'Successful!'}, status=status.HTTP_200_OK)
+        return Response({'response': "Successful!"}, status=status.HTTP_200_OK)
     return Response({}, status.HTTP_400_BAD_REQUEST)
