@@ -10,6 +10,10 @@ function CuisineCard(props) {
     const flipCard = () => {
         setShowCuisine(!showCuisine);
     }
+
+    const validateFilters = () => {
+        return filters.caloriesMax >= filters.caloriesMin;
+    }
     
     // fetch API
     const requestCuisine = () => {
@@ -72,7 +76,7 @@ function CuisineCard(props) {
         
         // render card
         return (
-            <div className="card">
+            <div className="card card-modified">
                 <button onClick={flipCard}>Ehh... maybe something else?</button>
                 <p>{cuisine.label}</p>
                 <img src={cuisine.image} alt={cuisine.label}/>
@@ -107,7 +111,17 @@ function CuisineCard(props) {
 
     return !showCuisine ? (
         <div>
-            <button onClick={() => {flipCard(); requestCuisine();}}>Ready for some...</button>
+            <div className="card card-modified" 
+            onClick={() => {
+                if (validateFilters()) {
+                    flipCard(); requestCuisine();
+                } else {
+                    alert("Invalid filters!")
+                }
+            }}
+        >
+            Ready for some...
+            </div>
         </div>
     ) : (
         renderCuisine()

@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
+import RegisterCard from './RegisterCard';
 
 function UserCard({ user }) {
   const { loginUser, logoutUser } = useContext(AuthContext);
+  const [showRegister, setShowRegister] = useState(false)
 
   // if logged in, say hello
   if (user) return (
@@ -21,19 +23,31 @@ function UserCard({ user }) {
     username.length > 0 && loginUser(username, password);
   };
 
-  return (
-      <div className="card">
-        <form onSubmit={handleSubmit}>
-          <h1>Login </h1>
-          <hr />
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" placeholder="Enter Username" />
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" placeholder="Enter Password" />
-          <button type="submit">Login</button>
-        </form>
+  return !showRegister? (
+      <div className="card card-container">
+        <form className="form-signin" onSubmit={handleSubmit}>
+          <img 
+            alt="login" id="profile-img" 
+            className="profile-img-card" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          />
+          <input className="form-control" type="text" id="username" placeholder="Enter Username" />
+          <input className="form-control" type="password" id="password" placeholder="Enter Password" />
+
+          <button 
+            className="btn btn-lg btn-primary btn-block btn-signin" 
+            type="submit"
+          > 
+            Login
+          </button>
+          <p href="#" className="forgot-password" onClick={setShowRegister}>Don't have an account?</p>
+        </form>    
       </div>
-  );
+  ) : (
+    <RegisterCard 
+      showRegister={showRegister}
+      setRegister={() => {setShowRegister(!showRegister);}}
+    />
+  )
 };
 
 export default UserCard

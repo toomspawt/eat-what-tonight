@@ -5,12 +5,11 @@ import useAxios from "../utils/useAxios";
 function FilterRange(props) {
     return (
         <div className="filter-range">
-            <label>{props.label}</label>
             <input 
                 id={props.id}
                 type="number" 
-                min="0" 
-                step="1" 
+                min={0}
+                step={1} 
                 value={props.value}
                 onChange={props.onChange}
                 />
@@ -21,17 +20,17 @@ function FilterRange(props) {
 function FilterTF(props) {
     //console.log(props.value);
     return (
-        <div className="filter-tf">
-            <span>{props.label}</span>
-            <label className="filter-tf-switch">
-                <input 
-                    id={props.id} 
-                    type="checkbox" 
-                    checked={props.value}
-                    onChange={props.onChange}
-                    />
-                <span className="slider-round"></span>
-                </label>
+        <div>
+            <input 
+                className='checkbox-tf'
+                id={props.id} 
+                type="checkbox" 
+                checked={props.value}
+                onChange={props.onChange}
+            />
+            <label className="label-tf" htmlFor={props.id}>
+                <div className="tick-mark"></div>
+            </label>
         </div>
     )
 }
@@ -90,37 +89,46 @@ function FilterCard({ user }) {
 
     return (
         <div>
-            <div className='card filter-card'>
-                <FilterRange
-                    label="calories (min)"
-                    id="caloriesMin"
-                    value={filters.caloriesMin}
-                    onChange={(e) => handleChangeInput(e)}
-                />
-                <FilterRange
-                    label="calories (max)"
-                    id="caloriesMax"
-                    value={filters.caloriesMax}
-                    onChange={(e) => handleChangeInput(e)}
-                />
-                <FilterTF 
-                    label="Vegan" 
-                    id='vegan'
-                    value={filters.vegan} 
-                    onChange={(e) => handleChangeInput(e)}
-                />
-                <FilterTF 
-                    label="Alcohol Free" 
-                    id='alcoholFree'
-                    value={filters.alcoholFree} 
-                    onChange={(e) => handleChangeInput(e)}
-                />
-                <FilterTF 
-                    label="Dairy Free" 
-                    id='dairyFree'
-                    value={filters.dairyFree} 
-                    onChange={(e) => handleChangeInput(e)}
-                />
+            <div className='card card-container-large'>
+                <h3 style={{"textAlign": "center", "paddingBottom": "20px"}}>Should be something...</h3>
+                <div className='filter-group' id="range-group">
+                    From
+                    <FilterRange
+                        label="calories (min)"
+                        id="caloriesMin"
+                        value={filters.caloriesMin}
+                        onChange={(e) => handleChangeInput(e)}
+                    />
+                    to
+                    <FilterRange
+                        label="calories (max)"
+                        id="caloriesMax"
+                        value={filters.caloriesMax}
+                        onChange={(e) => handleChangeInput(e)}
+                    />
+                    kcal
+                </div>
+                <p className="password-not-match">{filters.caloriesMin > filters.caloriesMax ? "Range error" : ""}</p>
+                <div className='filter-group'>
+                    <FilterTF 
+                        label="Vegan" 
+                        id='vegan'
+                        value={filters.vegan} 
+                        onChange={(e) => handleChangeInput(e)}
+                    />
+                    <FilterTF 
+                        label="Alcohol Free" 
+                        id='alcoholFree'
+                        value={filters.alcoholFree} 
+                        onChange={(e) => handleChangeInput(e)}
+                    />
+                    <FilterTF 
+                        label="Dairy Free" 
+                        id='dairyFree'
+                        value={filters.dairyFree} 
+                        onChange={(e) => handleChangeInput(e)}
+                    />
+                </div>
 
                 {
                     // "Set as default button, appeared if authenticated"

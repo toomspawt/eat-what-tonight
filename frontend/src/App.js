@@ -1,8 +1,9 @@
 import React from 'react';
 import './static/css/index.css'
+import './static/css/background.css'
 import UserCard from './cards/UserCard';
 import FilterCard from './cards/FilterCard';
-import RegisterCard from './cards/RegisterCard';
+// import Background from './cards/Background';
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 
@@ -12,8 +13,10 @@ export default function App() {
     //console.log(user);
     
     return ( 
-        <div className='card-container'>
-            { !user && <RegisterCard />}
+        <div className='container bg-container'>
+            {
+                //<Background />
+            }       
             <UserCard user={user}/>
             <FilterCard user={user}/>
         </div>

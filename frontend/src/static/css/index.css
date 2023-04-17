@@ -1,17 +1,279 @@
-.container {
-    min-height: 100vh;
-    width: 95%;
+body {
+    background-color: #f3f3f3;
+}
+  
+.card-container.card {
+    max-width: 350px;
+    padding: 40px 40px;
+}
+
+.card-container-large.card {
     max-width: 620px;
-    margin: auto;
+    padding: 30px 40px;
+}
+
+.btn {
+    font-weight: 700;
+    height: 36px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+
+/*
+* Card component
+*/
+
+.card {
+    background-color: #F7F7F7;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+
+/*
+* Form styles
+*/
+
+.profile-name-card {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0 0;
+    min-height: 1em;
+}
+
+.reauth-email {
+    display: block;
+    color: #404040;
+    line-height: 2;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-.card-container {
-    padding: 10px;
+.form-signin input {
+    direction: ltr;
+    height: 44px;
+    font-size: 16px;
 }
 
-.card {
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    border-color: rgb(104, 145, 162);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+}
+
+.btn.btn-signin {
+    /*background-color: #4d90fe; */
+    background-color: rgb(104, 145, 162);
+    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+    background-color: rgb(12, 97, 33);
+}
+
+.forgot-password {
+    color: rgb(104, 145, 162);
+    text-align: center;
+}
+
+.forgot-password:hover,
+.forgot-password:active,
+.forgot-password:focus {
+    cursor: pointer;
+    color: rgb(12, 97, 33);
+}
+
+.password-not-match {
+    color: red;
+}
+
+/*
+*   Number input
+*/
+
+.filter-group {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.filter-range {
+    width: 20%;
+}
+
+#range-group {
+    justify-content: center;
+    gap: 5px;
+}
+
+.filter-range input {
+    text-align: center;
+    width: 100%;
+}
+
+/*
+*   Checkbox input
+*/
+
+.checkbox-tf {
+    display: none;
+}
+
+.label-tf {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    background-color: #f72414;
+    transform: translateY(10%);
+    border-radius: 50%;
+    box-shadow: 0 7px 10px #ffbeb8;
+    cursor: pointer;
+    transition: 0.2s ease transform, 0.2s ease background-color, 0.2s ease box-shadow;
+    overflow: hidden;
+    z-index: 1;
+    border: 2px solid rgba(0, 0, 0, 0.44);
+}
+
+.label-tf:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    background-color: #fff;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    box-shadow: inset 0 7px 10px #ffbeb8;
+    transition: 0.2s ease width, 0.2s ease height;
     border: 1px solid black;
-    padding: 10px;
-    margin: 10px;
+}
+
+.label-tf:hover:before {
+    width: 55%;
+    height: 55%;
+    box-shadow: inset 0 7px 10px #ff9d96;
+}
+
+/*
+.label-tf:active {
+    transform: translateY(-50%) scale(0.9);
+}
+*/
+
+.tick-mark {
+    position: absolute;
+    top: -1px;
+    right: 0;
+    left: 0;
+    width: 60%;
+    height: 60%;
+    margin: 0 auto;
+    margin-left: 7px;
+    transform: rotateZ(-40deg);
+}
+
+.tick-mark:before,
+.tick-mark:after {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    border-radius: 2px;
+    opacity: 0;
+    transition: 0.2s ease transform, 0.2s ease opacity;
+}
+
+.tick-mark:before {
+    left: 0;
+    bottom: 0;
+    width: 16%;
+    height: 36%;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.23);
+    transform: translateY(-68px);
+}
+
+.tick-mark:after {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 14%;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.23);
+    transform: translateX(78px);
+}
+
+
+.checkbox-tf:checked + .label-tf {
+    background-color: #07d410;
+    box-shadow: 0 7px 10px #92ff97;
+}
+
+.checkbox-tf:checked + .label-tf:before {
+    width: 0;
+    height: 0;
+}
+
+.checkbox-tf:checked + .label-tf .tick-mark:before,
+.checkbox-tf:checked + .label-tf .tick-mark:after {
+    transform: translate(0);
+    opacity: 1;
 }
