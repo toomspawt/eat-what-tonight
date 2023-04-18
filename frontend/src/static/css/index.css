@@ -156,18 +156,65 @@ body {
 
 
 .filter-range {
-    width: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.filter-range svg {
+    width: 2ch;
+    height: 2ch;
+    position: relative;
+    border-radius: 50%;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+
+.filter-range svg:hover {
+    background-color: rgb(106, 104, 223);
+    cursor: pointer;
+}
+
+.filter-range svg.bi-arrow-up-circle:hover {
+    transform: translateY(-0.5ch);
+}
+.filter-range svg.bi-arrow-up-circle:active {
+    transform: translateY(0.2ch);
+}
+
+.filter-range svg.bi-arrow-down-circle:hover {
+    transform: translateY(0.5ch);
+}
+.filter-range svg.bi-arrow-down-circle:active {
+    transform: translateY(-0.2ch);
 }
 
 #range-group {
     justify-content: center;
+    align-items: center;
     gap: 5px;
 }
 
-.filter-range input {
-    text-align: center;
-    width: 100%;
+
+.filter-range input::-webkit-outer-spin-button,
+.filter-range input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; 
+    /* <-- Apparently some margin are still there even though it's hidden */
 }
+
+.filter-range input[type=number] {
+    -moz-appearance:textfield; 
+    /* Firefox */
+    border: none;
+    text-align: center;
+    width: 5ch;
+}
+
 
 /*
 *   Checkbox input
