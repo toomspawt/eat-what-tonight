@@ -7,7 +7,6 @@ import FilterCard from './cards/FilterCard';
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 
-
 export default function App() {
     let { user } = useContext(AuthContext);
     //console.log(user);

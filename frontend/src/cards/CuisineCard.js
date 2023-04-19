@@ -1,53 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 function CuisineCard(props) {
-    const filters = props.filters;
-    
-    let [showCuisine, setShowCuisine] = useState(false);
-    let [cuisine, setCuisine] = useState("");
-
-    // show/hide cuisine card
-    const flipCard = () => {
-        setShowCuisine(!showCuisine);
-    }
-
-    const validateFilters = () => {
-        return filters.caloriesMax >= filters.caloriesMin;
-    }
-    
-    // fetch API
-    const requestCuisine = () => {
-        // helper function 
-        let objToQueryString = (obj) => {
-            const keyValuePairs = [];
-            for (let i = 0; i<obj.length; i++) if (obj[i][1] !== "") {
-                keyValuePairs.push(encodeURIComponent(obj[i][0]) + '=' + encodeURIComponent(obj[i][1]));
-            }
-            return keyValuePairs.join('&');
-        }
-
-        // fetch API
-        const queryString = objToQueryString([
-            ["type", "public"],
-            ["app_id", "d70fdf06"],
-            ["app_key", "4bbfb3bca8ebfe0e162ae8af5a0b2844"],
-            ["calories", filters.caloriesMin + "-" + filters.caloriesMax],
-            ["random", true],
-            ["health", filters.alcoholFree ? "alcohol-free" : ""],
-            ["health", filters.dairyFree ? "dairy-free" : ""],
-            ["health", filters.vegan ? "vegan" : ""]
-        ]);
-
-        console.log(`https://api.edamam.com/api/recipes/v2?${queryString}`);
-        fetch(`https://api.edamam.com/api/recipes/v2?${queryString}`)
-        .then(response => response.json())
-        .then(data => {
-            setCuisine(data.hits[0].recipe);
-        })
-    }
-
     // render received information
     const renderCuisine = () => {
+        const cuisine = props.cuisine;
         // helper function
         const toArray = (attribute) => {
             let arr = [];
@@ -77,7 +33,7 @@ function CuisineCard(props) {
         // render card
         return (
             <div className="card card-modified">
-                <button onClick={flipCard}>Ehh... maybe something else?</button>
+                <button onClick={props.flipCard}>Ehh... maybe something else?</button>
                 <p>{cuisine.label}</p>
                 <img src={cuisine.image} alt={cuisine.label}/>
                 {/* Information */}
@@ -109,23 +65,7 @@ function CuisineCard(props) {
         )
     }
 
-    return !showCuisine ? (
-        <div>
-            <div className="card card-modified" 
-            onClick={() => {
-                if (validateFilters()) {
-                    flipCard(); requestCuisine();
-                } else {
-                    alert("Invalid filters!")
-                }
-            }}
-        >
-            Ready for some...
-            </div>
-        </div>
-    ) : (
-        renderCuisine()
-    )
+    return renderCuisine()
 
 }
 

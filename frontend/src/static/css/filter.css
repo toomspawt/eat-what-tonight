@@ -1,0 +1,208 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:300italic,400);
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 40px;
+}
+.item-wrapper .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+.item-wrapper .item .title {
+    font-family: 'Playfair Display', serif;
+    flex-grow: 1;
+    font-size: 18px;
+}
+.item-wrapper .item .space {
+    flex-basis: 1;
+    overflow: hidden;
+    flex: 20;
+    flex-shrink: 4;
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 16px;
+    border-bottom: 1px dotted black;
+    font-size: 0px;
+}
+.item-wrapper .item .price {
+    font-family: 'Playfair Display', serif;
+    min-width: 60px;
+    align-self: felx-end;
+}
+.item-wrapper .description {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    width: 80%;
+}
+ 
+
+/*
+*   Number input
+*/
+
+.filter-group {
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+}
+
+.filter-range {
+    display: flex;
+    align-items: center;
+}
+
+.filter-range svg {
+    width: 2ch;
+    height: 2ch;
+    position: relative;
+    border-radius: 50%;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+
+
+.filter-range svg:hover {
+    color: rgb(65, 190, 240);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filter-range svg.bi-arrow-up-circle:hover {
+    transform: translateY(-0.3ch);
+}
+.filter-range svg.bi-arrow-up-circle:active {
+    transform: translateY(0.1ch);
+}
+
+.filter-range svg.bi-arrow-down-circle:hover {
+    transform: translateY(0.3ch);
+}
+.filter-range svg.bi-arrow-down-circle:active {
+    transform: translateY(-0.1ch);
+}
+
+#range-group {
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-range input::-webkit-outer-spin-button,
+.filter-range input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; 
+    /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.filter-range input[type=number] {
+    -moz-appearance:textfield; 
+    /* Firefox */
+    border: none;
+    text-align: center;
+    width: 5ch;
+}
+
+
+/*
+*   Checkbox input
+*/
+
+.tgl {
+    display: none;
+}
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+    box-sizing: border-box;
+}
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+    background: none;
+}
+.tgl + .tgl-btn {
+    outline: 0;
+    display: block;
+    width: 4em;
+    height: 2em;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+}
+.tgl + .tgl-btn:after {
+    left: 0;
+}
+.tgl + .tgl-btn:before {
+    display: none;
+}
+.tgl:checked + .tgl-btn:after {
+    left: 50%;
+}
+
+.tg-list-item {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0ch 1ch;
+}
+
+.tgl-flip + .tgl-btn {
+    padding: 2px;
+    transition: all 0.2s ease;
+    font-family: sans-serif;
+    perspective: 100px;
+}
+.tgl-flip + .tgl-btn:after, .tgl-flip + .tgl-btn:before {
+    display: inline-block;
+    transition: all 0.4s ease;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    line-height: 2em;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 4px;
+}
+.tgl-flip + .tgl-btn:after {
+    content: attr(data-tg-on);
+    background: #02c66f;
+    transform: rotateY(-180deg);
+}
+.tgl-flip + .tgl-btn:before {
+    background: #ff3a19;
+    content: attr(data-tg-off);
+}
+.tgl-flip + .tgl-btn:active:before {
+    transform: rotateY(-20deg);
+}
+.tgl-flip:checked + .tgl-btn:before {
+    transform: rotateY(180deg);
+}
+.tgl-flip:checked + .tgl-btn:after {
+    transform: rotateY(0);
+    left: 0;
+    background: #7fc6a6;
+}
+.tgl-flip:checked + .tgl-btn:active:after {
+    transform: rotateY(20deg);
+}
+
+
+/* Request Button */
