@@ -229,26 +229,29 @@ function FilterCard({ user }) {
                     </div>
                 </div>
                 <p className="description">
-                    {filters.dairyFree ? "I just hate hapiness" : "Who could live without cheese? Ever?"}
+                    {filters.dairyFree ? "I just hate hapiness" : "Who could live without cheese?"}
                 </p>
             </div>
-            {
-                // "Set as default button, appeared if authenticated"
-                user && <button onClick={() => newDefault()}>Set as default</button>
-            }
-
-            <button 
-                className='filter-button button-request'
-                onClick={() => {
-                    if (validateFilters()) {
-                        flipCard(); requestCuisine();
-                    } else {
-                        alert("Invalid filters!")
+            <div className='item-wrapper'>
+                <div className='filter-btn-group'>
+                    {
+                        // "Set as default button, appeared if authenticated"
+                        user && <button className='filter-btn button-set' onClick={() => newDefault()}>Set default</button>
                     }
-                }}
-            >
-                Click me
-            </button>
+                    <button 
+                        className='filter-btn button-request'
+                        onClick={() => {
+                            if (validateFilters()) {
+                                flipCard(); requestCuisine();
+                            } else {
+                                alert("Invalid filters!")
+                            }
+                        }}
+                    >
+                        Generate food
+                    </button>
+                </div>
+            </div>
         </div>
         )
     } 
