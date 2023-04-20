@@ -19,6 +19,10 @@
 @media screen
   and (max-device-width: 480px)
   and (orientation: portrait){
+    .recipe-image {
+        max-width: none;
+        max-height: none;
+    }
     .recipe-image img{
         padding: 20px;  
     }

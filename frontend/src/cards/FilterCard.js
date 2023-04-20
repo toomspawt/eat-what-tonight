@@ -124,9 +124,10 @@ function FilterCard({ user }) {
                     filters: filters
                 })
                 //console.log(filters)
+                alert("Successful!")
                 console.log(response.data.response)
             } catch {
-                console.log("Something went wrong")
+                alert("Something went wrong!")
             }
         };
         fetchData();
@@ -266,16 +267,7 @@ function FilterCard({ user }) {
                 flipCard={flipCard}
             />
         </ReactCardFlip>
-    )
-    /*
-    !showCuisine ? (
-        renderFilters()
-    ) : <CuisineCard
-        cuisine={cuisine}
-        flipCard={flipCard}
-    />
-    */
-        
+    )   
     
 }
 

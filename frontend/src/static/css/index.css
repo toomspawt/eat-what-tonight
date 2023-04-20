@@ -25,6 +25,16 @@ html, #root {
     cursor: default;
 }
 
+/*
+*   Navbar
+*/
+/* #Navigation
+================================================== */
+.dropdown-menu.show {
+    min-width: 300px;
+    right: 0;
+    left: auto !important;
+}
 
 /*
 * Card component
