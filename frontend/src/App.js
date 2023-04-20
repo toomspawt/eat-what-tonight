@@ -1,6 +1,6 @@
 import React from 'react';
 import './static/css/index.css'
-import './static/css/background.css'
+//import './static/css/background.css'
 import UserCard from './cards/UserCard';
 import FilterCard from './cards/FilterCard';
 //import Background from './cards/Background';

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import CuisineCard from './CuisineCard';
 import useAxios from "../utils/useAxios";
 import "../static/css/filter.css"
+import ReactCardFlip from 'react-card-flip';
 
 function FilterRange(props) {
     return (
@@ -256,13 +257,24 @@ function FilterCard({ user }) {
         )
     } 
 
-    return !showCuisine ? (
+    return (
+        <ReactCardFlip isFlipped={showCuisine} flipDirection="horizontal">
+            {renderFilters()}
+
+            <CuisineCard
+                cuisine={cuisine}
+                flipCard={flipCard}
+            />
+        </ReactCardFlip>
+    )
+    /*
+    !showCuisine ? (
         renderFilters()
     ) : <CuisineCard
         cuisine={cuisine}
         flipCard={flipCard}
     />
-    
+    */
         
     
 }

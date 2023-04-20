@@ -236,22 +236,24 @@ h2 {
 }
 
 .button-request {
-    border-color: #383838;
+    border-color: #414141;
     color: #fff;
-    box-shadow: 0 0 40px 40px #383838 inset, 0 0 0 0 #383838;
-    transition: all 300ms ease-in-out;
+    background-image: linear-gradient(135deg, #414141 50%, transparent 50%);
+    background-position: 0%;
+    background-size: 400%;
+    transition: all 500ms ease-in-out;
 }
 .button-request:hover {
-    box-shadow: none;
+    background-position: 100%;
     color: #383838;
 }
 .button-set {
     border-color: #414141;
     color: #414141;
-    background-image: linear-gradient(45deg, #414141 50%, transparent 50%);
-    background-position: 101%;
+    background-image: linear-gradient(135deg, #414141 50%, transparent 50%);
+    background-position: 100%;
     background-size: 400%;
-    transition: background 300ms ease-in-out;
+    transition: all 500ms ease-in-out;
 }
 .button-set:hover {
     background-position: 0%;
