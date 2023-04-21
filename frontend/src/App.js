@@ -16,7 +16,7 @@ export default function App() {
             <Navigation user={user} />
             <div className='container bg-container'>
                 {
-                    //<Background />
+                    <Background />
                 }       
                 <FilterCard user={user}/>
             </div>
