@@ -7,6 +7,7 @@
 
 svg {
     position: absolute;
+    z-index: 2000;
 }
 
 .wave-box {
