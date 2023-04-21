@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
             })
         });
         if (response.status === 201) {
-            //console.log('Registered!');
+            alert("Registered!")
             //history.push("/login");
         } else {
             alert("Something went wrong!");

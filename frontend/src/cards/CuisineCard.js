@@ -3,7 +3,7 @@ import '../static/css/cuisine.css'
 
 function CuisineCard(props) {
     const cuisine = props.cuisine;
-    console.log(cuisine);
+    //console.log(cuisine);
     if (cuisine === "") return (<p></p>)
 
 

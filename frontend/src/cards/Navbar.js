@@ -6,7 +6,7 @@ import UserCard from './UserCard';
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
-function Navigation(props) {
+function Navigation({ user }) {
     const { logoutUser } = useContext(AuthContext);
     return (
         <Navbar bg="light" expand="lg">
@@ -15,10 +15,10 @@ function Navigation(props) {
             <Navbar.Toggle />
             <Navbar.Collapse>
                 <Nav className="justify-content-end" style={{ "width": "100%" }}>
-                    {props.user ? (
-                        <NavDropdown title={props.user.username} id="basic-nav-dropdown">
-                            <NavDropdown.Item>
-                                <Nav.Link onClick={logoutUser}>Log out</Nav.Link>
+                    {user ? (
+                        <NavDropdown title={user.username} id="log-out-nav">
+                            <NavDropdown.Item onClick={logoutUser} style={{"margin": "auto"}}>
+                                Log out
                             </NavDropdown.Item>
                         </NavDropdown>
                     ) : (

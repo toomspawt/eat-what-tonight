@@ -10,9 +10,10 @@ import Navigation from './cards/Navbar';
 export default function App() {
     let { user } = useContext(AuthContext);
     
+    
     return ( 
         <div>
-            <Navigation user={user} />
+            <Navigation user={user}/>
             <div className='container bg-container'>
                 {
                     //  <Background />

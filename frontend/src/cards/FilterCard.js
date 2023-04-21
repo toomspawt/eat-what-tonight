@@ -56,6 +56,26 @@ function FilterCard({ user }) {
         dairyFree: true,
     });
 
+    // if authenticated, get user's filters
+    const api = useAxios();
+    useEffect(() => {
+        if (user) {
+            const fetchData = async () => {
+                try {
+                    const response = await api.get("/filter/");
+                    setFilters({...response.data.response});
+                    console.log("philter---", filters)
+                    //console.log(response.data.response)
+                    //console.log(filters)
+                } catch {
+                    console.log("Something went wrong");
+                }
+            };
+            fetchData();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user]);
+    
     // show/hide cuisine card
     let [showCuisine, setShowCuisine] = useState(false);
     let [cuisine, setCuisine] = useState("");
@@ -96,25 +116,6 @@ function FilterCard({ user }) {
             setCuisine(data.hits[0].recipe);
         })
     }
-
-    // if authenticated, get user's filters
-    const api = useAxios();
-    useEffect(() => {
-        if (user) {
-            const fetchData = async () => {
-                try {
-                    const response = await api.get("/filter/");
-                    setFilters({...response.data.response});
-                    //console.log(response.data.response)
-                    //console.log(filters)
-                } catch {
-                    console.log("Something went wrong");
-                }
-            };
-            fetchData();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     // allow user to set current filters as defaults
     const newDefault = () => {

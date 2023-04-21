@@ -3,22 +3,10 @@ import AuthContext from "../context/AuthContext";
 import RegisterCard from './RegisterCard';
 import ReactCardFlip from 'react-card-flip';
 
-function UserCard({ user }) {
+function UserCard() {
   const { loginUser } = useContext(AuthContext);
   const [showRegister, setShowRegister] = useState(false)
 
-  // if logged in, say hello
-  /*
-  if (user) return (
-    <div className="card">
-      <h1>Hello, {user.username}</h1>
-      <h1>You are on home page!</h1>
-      <button onClick={logoutUser}>Logout</button>
-    </div>
-  )
-  */
-  
-  // if not logged in, render LoginCard
   const handleSubmit = (e) => {
     e.preventDefault();
     const username = e.target.username.value;
