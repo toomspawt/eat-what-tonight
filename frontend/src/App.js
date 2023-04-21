@@ -9,7 +9,6 @@ import Navigation from './cards/Navbar';
 
 export default function App() {
     let { user } = useContext(AuthContext);
-    //console.log(user);
     
     return ( 
         <div>

@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     //const history = useHistory();
 
     const loginUser = async (username, password) => {
-        const response = await fetch("http://127.0.0.1:8000/api/token/", {
+        const response = await fetch("https://toomspawt.pythonanywhere.com/api/token/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const registerUser = async (username, password, password2) => {
-        const response = await fetch("http://127.0.0.1:8000/api/register/", {
+        const response = await fetch("https://toomspawt.pythonanywhere.com/api/register/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
