@@ -134,6 +134,9 @@ h2 {
     cursor: pointer;
     user-select: none;
 }
+.tgl-btn:hover {
+    transform: rotate3d(0.5, 1, 0.5, 20deg);
+}
 .tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
     position: relative;
     display: block;
