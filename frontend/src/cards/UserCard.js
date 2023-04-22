@@ -29,7 +29,7 @@ function UserCard() {
             className="btn btn-lg btn-primary btn-block btn-signin" 
             type="submit"
           > 
-            Login
+            Log in
           </button>
           <p href="#" className="forgot-password" onClick={setShowRegister}>Don't have an account?</p>
         </form>    

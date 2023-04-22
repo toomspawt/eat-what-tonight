@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem("authTokens", JSON.stringify(data));
             //history.push("/");
         } else {
-            alert("Something went wrong!");
+            alert("Invalid username or password. Please try again.");
         }
     };
 
@@ -59,7 +59,11 @@ export const AuthProvider = ({ children }) => {
             alert("Registered!")
             //history.push("/login");
         } else {
-            alert("Something went wrong!");
+            const errors = await response.json();
+            let notification = "Registration failed due to the following reason(s): \n";
+            for (let key in errors) 
+                for (let error in errors[key])  notification += '- ' + errors[key][error] + '\n';
+            alert(notification);
         }
     };
 

@@ -22,7 +22,7 @@ function Navigation({ user }) {
                             </NavDropdown.Item>
                         </NavDropdown>
                     ) : (
-                    <NavDropdown title="Log in" id="basic-nav-dropdown">
+                    <NavDropdown title="Log in/Register" id="basic-nav-dropdown">
                         <UserCard />
                     </NavDropdown>
                     )}
