@@ -36,6 +36,7 @@ function FilterRange(props) {
 function FilterTF(props) {
     //console.log(props.value);
     return (
+        /*
         <li className="tg-list-item">
             <input 
                 className="tgl tgl-flip" type="checkbox"
@@ -44,6 +45,15 @@ function FilterTF(props) {
             />
             <label className="tgl-btn" data-tg-off="Nope" data-tg-on="Yeah!" htmlFor={props.id}></label>
         </li>
+        */
+        <div className="form-checkbox">
+            <input 
+                type="checkbox"
+                id={props.id} checked={props.value}
+                onChange={props.onChange}
+            />
+            <label htmlFor={props.id} className="check-box"></label> 
+        </div>
     )
 }
 

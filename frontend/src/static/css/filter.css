@@ -116,97 +116,151 @@ h2 {
 *   Checkbox input
 */
 
-.tgl {
-    display: none;
+/* Checkmark style starts */
+@-moz-keyframes dothabottomcheck {
+    0% {
+        height: 0;
+   }
+    100% {
+        height: 1em;
+   }
 }
-.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
-    box-sizing: border-box;
+@-webkit-keyframes dothabottomcheck {
+    0% {
+        height: 0;
+   }
+    100% {
+        height: 1em;
+   }
 }
-.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
-    background: none;
+@keyframes dothabottomcheck {
+    0% {
+        height: 0;
+   }
+    100% {
+        height: 1em;
+   }
 }
-.tgl + .tgl-btn {
-    outline: 0;
-    display: block;
-    width: 4em;
-    height: 2em;
-    position: relative;
-    cursor: pointer;
-    user-select: none;
+@keyframes dothatopcheck {
+    0% {
+        height: 0;
+   }
+    50% {
+        height: 0;
+   }
+    100% {
+        height: 2.3em;
+   }
 }
-.tgl-btn:hover {
-    transform: rotate3d(0.5, 1, 0.5, 20deg);
+@-webkit-keyframes dothatopcheck {
+    0% {
+        height: 0;
+   }
+    50% {
+        height: 0;
+   }
+    100% {
+        height: 2.3em;
+   }
 }
-.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
-    position: relative;
-    display: block;
-    content: "";
-    width: 50%;
-    height: 100%;
-}
-.tgl + .tgl-btn:after {
-    left: 0;
-}
-.tgl + .tgl-btn:before {
-    display: none;
-}
-.tgl:checked + .tgl-btn:after {
-    left: 50%;
+@-moz-keyframes dothatopcheck {
+    0% {
+        height: 0;
+   }
+    50% {
+        height: 0;
+   }
+    100% {
+        height: 2.3em;
+   }
 }
 
-.tg-list-item {
-    list-style: none;
+.form-checkbox {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 0ch 1ch;
 }
-
-.tgl-flip + .tgl-btn {
-    padding: 2px;
-    transition: all 0.2s ease;
-    font-family: sans-serif;
-    perspective: 100px;
+.form-checkbox input[type=checkbox] {
+    display: none;
 }
-.tgl-flip + .tgl-btn:after, .tgl-flip + .tgl-btn:before {
+.check-box {
+    height: 2rem;
+    width: 2rem;
+    background-color: transparent;
+    border: 3px solid #000;
+    border-radius: 3px;
+    position: relative;
     display: inline-block;
-    transition: all 0.4s ease;
-    width: 100%;
-    text-align: center;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-transition: all ease 0.2s;
+    -o-transition: all ease 0.2s;
+    -webkit-transition: all ease 0.2s;
+    transition: all ease 0.2s;
+    cursor: pointer;
+}
+.check-box:hover {
+    transform: scale(1.05);
+    border-radius: 6px;
+}
+.check-box:active {
+    transform: scale(0.9);
+}
+.check-box::before, .check-box::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     position: absolute;
-    line-height: 2em;
-    font-weight: bold;
-    color: #fff;
-    position: absolute;
-    top: 0;
-    left: 0;
-    backface-visibility: hidden;
-    border-radius: 4px;
+    height: 0;
+    width: 6px;
+    background-color: #34b93d;
+    display: inline-block;
+    -moz-transform-origin: left top;
+    -ms-transform-origin: left top;
+    -o-transform-origin: left top;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    border-radius: 1px;
+    content: ' ';
+    -webkit-transition: opacity ease 0.5;
+    -moz-transition: opacity ease 0.5;
+    transition: opacity ease 0.5;
 }
-.tgl-flip + .tgl-btn:after {
-    content: attr(data-tg-on);
-    background: #02c66f;
-    transform: rotateY(-180deg);
+.check-box::before {
+    top: 1.4em;
+    left: 0.85em;
+    
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
 }
-.tgl-flip + .tgl-btn:before {
-    background: #ff3a19;
-    content: attr(data-tg-off);
+.check-box::after {
+    top: 0.7em;
+    left: 0.08em;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
-.tgl-flip + .tgl-btn:active:before {
-    transform: rotateY(-20deg);
+input[type=checkbox]:checked + .check-box, .check-box.checked {
+    border-color: #34b93d;
 }
-.tgl-flip:checked + .tgl-btn:before {
-    transform: rotateY(180deg);
+input[type=checkbox]:checked + .check-box::after, .check-box.checked::after {
+    -moz-animation: dothabottomcheck 0.2s ease 0s forwards;
+    -o-animation: dothabottomcheck 0.2s ease 0s forwards;
+    -webkit-animation: dothabottomcheck 0.2s ease 0s forwards;
+    animation: dothabottomcheck 0.2s ease 0s forwards;
 }
-.tgl-flip:checked + .tgl-btn:after {
-    transform: rotateY(0);
-    left: 0;
-    background: #7fc6a6;
+input[type=checkbox]:checked + .check-box::before, .check-box.checked::before {
+    box-shadow: 0 0 0 0.15em white;
+    -moz-animation: dothatopcheck 0.4s ease 0s forwards;
+    -o-animation: dothatopcheck 0.4s ease 0s forwards;
+    -webkit-animation: dothatopcheck 0.4s ease 0s forwards;
+    animation: dothatopcheck 0.4s ease 0s forwards;
 }
-.tgl-flip:checked + .tgl-btn:active:after {
-    transform: rotateY(20deg);
-}
-
 
 /* Request Button */
 .filter-btn-group {
