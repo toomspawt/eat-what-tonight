@@ -20,10 +20,7 @@ export default function RegisterCard(props) {
 
     const passwordCheckLength = () => {return password.length >= 8}
     const passwordCheckNumeric = () => {
-        let str = password;
-        if (typeof str != "string") return false // we only process strings!  
-        return isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-               isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+        return !/^\d+$/.test(password);
     }
     const commnonPassword = ['12345678', '123456789', 'abc123456', 'abcd1234', 'password123'];
     const passwordCheckCommon = () => {
@@ -54,7 +51,7 @@ export default function RegisterCard(props) {
                     placeholder="Password"
                     required
                 />
-                <li className={password.length == 0 ? "text-secondary" : passwordCheckLength() ? "text-success" : "text-danger"}>
+                <li className={password.length === 0 ? "text-secondary" : passwordCheckLength() ? "text-success" : "text-danger"}>
                     At least 8 characters
                     {passwordCheckLength() ? (
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
@@ -62,7 +59,7 @@ export default function RegisterCard(props) {
                         </svg>
                     ): (<></>)}
                 </li>
-                <li className={password.length == 0 ? "text-secondary" : passwordCheckNumeric() ? "text-success" : "text-danger"}>
+                <li className={password.length === 0 ? "text-secondary" : passwordCheckNumeric() ? "text-success" : "text-danger"}>
                     Not entirely numeric
                     {passwordCheckNumeric() ? (
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
@@ -70,7 +67,7 @@ export default function RegisterCard(props) {
                         </svg>
                     ): (<></>)}
                 </li>
-                <li className={password.length == 0 ? "text-secondary" : passwordCheckCommon() ? "text-success" : "text-danger"}>
+                <li className={password.length === 0 ? "text-secondary" : passwordCheckCommon() ? "text-success" : "text-danger"}>
                     Not too common
                     {passwordCheckCommon() ? (
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
