@@ -18,6 +18,19 @@ export default function RegisterCard(props) {
         }
     };
 
+    const passwordCheckLength = () => {return password.length >= 8}
+    const passwordCheckNumeric = () => {
+        let str = password;
+        if (typeof str != "string") return false // we only process strings!  
+        return isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+               isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+    }
+    const commnonPassword = ['12345678', '123456789', 'abc123456', 'abcd1234', 'password123'];
+    const passwordCheckCommon = () => {
+        if (password in commnonPassword) return false;
+        return passwordCheckLength() && true;
+    }
+
     return !showRegister ? (
         <div></div>
     ) : (
@@ -41,6 +54,30 @@ export default function RegisterCard(props) {
                     placeholder="Password"
                     required
                 />
+                <li className={password.length == 0 ? "text-secondary" : passwordCheckLength() ? "text-success" : "text-danger"}>
+                    At least 8 characters
+                    {passwordCheckLength() ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
+                            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                        </svg>
+                    ): (<></>)}
+                </li>
+                <li className={password.length == 0 ? "text-secondary" : passwordCheckNumeric() ? "text-success" : "text-danger"}>
+                    Not entirely numeric
+                    {passwordCheckNumeric() ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
+                            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                        </svg>
+                    ): (<></>)}
+                </li>
+                <li className={password.length == 0 ? "text-secondary" : passwordCheckCommon() ? "text-success" : "text-danger"}>
+                    Not too common
+                    {passwordCheckCommon() ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
+                            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                        </svg>
+                    ): (<></>)}
+                </li>
                 <input
                     type="password"
                     id="confirm-password"
@@ -49,7 +86,7 @@ export default function RegisterCard(props) {
                     placeholder="Confirm Password"
                     required
                 />
-                <p className="password-not-match">{password2 !== password ? "Passwords do not match" : ""}</p>
+                <p className="text-danger">{password2 !== password ? "Passwords do not match" : ""}</p>
                 <button className="btn btn-lg btn-primary btn-block btn-signin">Register</button>
                 <p href="#" className="forgot-password" onClick={setRegister}>Already have an account?</p>
             </form>

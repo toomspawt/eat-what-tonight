@@ -166,6 +166,14 @@ html, #root {
     color: rgb(12, 97, 33);
 }
 
+.form-signin li {
+    white-space: initial;
+    font-size: 0.8rem;
+    list-style: circle;
+    margin-bottom: 4px;
+
+}
+
 .password-not-match {
     color: red;
 }
