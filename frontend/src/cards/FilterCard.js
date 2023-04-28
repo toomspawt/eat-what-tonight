@@ -5,6 +5,39 @@ import "../static/css/filter.css"
 import ReactCardFlip from 'react-card-flip';
 
 let previousCuisines = [];
+const MEALTYPES = ['all', 'breakfast', 'lunch', 'dinner', 'snack', 'teatime',]
+    .map((mt) => (<option key={mt} value={mt}>{mt}</option>))
+const DISHTYPES = ['all', 'biscuits and cookies', 'bread', 'cereals', 'condiments and sauces', ('desserts', 'desserts'),
+    'drinks', 'main course', 'pancake', 'preps', 'preserve', 'salad', 'sandwiches', 'side dish', 'soup', 'starter', 'sweets']
+    .map((dt) => (<option key={dt} value={dt}>{dt}</option>))
+const CUISINETYPES =['all', 'American', 'Asian', 'British', 'Caribbean', 'Central Europe', 
+    'Chinese', 'Eastern Europe', 'French', 'Indian', 'Italian', 'Japanese', 'Kosher', 
+    'Mediterranean', 'Mexican', 'Middle Eastern', 'Nordic', 'South American', 'South East Asian']
+    .map((ct) => (<option key={ct} value={ct}>{ct}</option>))
+
+function FilterChoice(props) {
+    let width = String(props.value.length + 1.75) + 'ch';
+    return (
+        <div className="item-wrapper">
+            <div className="item">
+                <div className="title">{props.label + ""}</div>
+                <div className="space"></div>
+                <div className="price">
+                    <div className='filter-choice'>
+                        <select 
+                            id={props.id} value={props.value} 
+                            onChange={props.onChange}
+                            style={{"width": width}}
+                        >
+                            {props.possibleValues}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <p className="description">{props.description}</p>
+        </div>
+    )
+}
 
 function FilterRange(props) {
     return (
@@ -55,10 +88,10 @@ function FilterCard({ user }) {
         caloriesMax: 2000,
         vegan: false,
         alcoholFree: false,
-        dairyFree: true,
-        mealType: "lunch",
-        dishType: "salad",
-        cuisineType: "Asian",
+        dairyFree: false,
+        mealType: "all",
+        dishType: "all",
+        cuisineType: "all",
     });
 
     // if authenticated, get user's filters
@@ -70,7 +103,7 @@ function FilterCard({ user }) {
                     const response = await api.get("/filter/");
                     setFilters({...response.data.response});
                     //console.log("philter---", filters)
-                    console.log(response.data.response)
+                    //console.log(response.data.response)
                     //console.log(filters)
                 } catch {
                     console.log("Something went wrong");
@@ -86,7 +119,7 @@ function FilterCard({ user }) {
     let [cuisine, setCuisine] = useState("");
     const flipCard = () => {
         setShowCuisine(!showCuisine);
-        console.log(showCuisine)
+        //console.log(showCuisine)
     }
 
     const validateFilters = () => {
@@ -114,17 +147,21 @@ function FilterCard({ user }) {
             ["health", filters.alcoholFree ? "alcohol-free" : ""],
             ["health", filters.dairyFree ? "dairy-free" : ""],
             ["health", filters.vegan ? "vegan" : ""],
-            ["cuisineType", filters.cuisineType ? filters.cuisineType : ""],
-            ["mealType", filters.mealType ? filters.mealType : ""],
-            ["dishType", filters.dishType ? filters.dishType : ""]
+            ["cuisineType", filters.cuisineType !== "all" ? filters.cuisineType : ""],
+            ["mealType", filters.mealType !== "all" ? filters.mealType : ""],
+            ["dishType", filters.dishType !== "all" ? filters.dishType : ""]
         ]);
 
         console.log(`https://api.edamam.com/api/recipes/v2?${queryString}`);
         fetch(`https://api.edamam.com/api/recipes/v2?${queryString}`)
         .then(response => response.json())
         .then(data => {
-            previousCuisines.push(cuisine);
             setCuisine(data.hits[0].recipe);
+            previousCuisines.push(cuisine);
+            flipCard();
+        })
+        .catch((e) => {
+            alert("Ehh... It seems like there's no such cuisine")
         })
     }
 
@@ -152,7 +189,8 @@ function FilterCard({ user }) {
     
     const handleChangeInput = (event) => {
         let newFilters = filters;
-        newFilters[event.target.id] = (event.target.type === "checkbox" ? (event.target.checked) : Number(event.target.value));
+        newFilters[event.target.id] = (event.target.type === "checkbox" ? (event.target.checked) : 
+                                        event.target.type === "number" ? Number(event.target.value) : event.target.value);
         setFilters({...newFilters});
         console.log(filters);
     }
@@ -171,6 +209,25 @@ function FilterCard({ user }) {
         return (
         <div className='card card-container-large'>
             <h2>Order</h2>
+            <FilterChoice 
+                id='mealType' label='Meal type' description='Time to eat!'
+                value={filters.mealType}
+                possibleValues={MEALTYPES}
+                onChange={(e) => handleChangeInput(e)}
+            />
+            <FilterChoice 
+                id='dishType' label='Dish type' description='Eat what tonight?'
+                value={filters.dishType}
+                possibleValues={DISHTYPES}
+                onChange={(e) => handleChangeInput(e)}
+            />
+            <FilterChoice 
+                id='cuisineType' label='Cuisine type' description='I dunno whether choosing cuisine is considered racist? Or cuisin-ist?'
+                value={filters.cuisineType}
+                possibleValues={CUISINETYPES}
+                onChange={(e) => handleChangeInput(e)}
+            />
+
             <div className="item-wrapper">
                 <div className="item">
                     <div className="title">Calories (min)</div>
@@ -261,7 +318,7 @@ function FilterCard({ user }) {
                         className='filter-btn button-request'
                         onClick={() => {
                             if (validateFilters()) {
-                                flipCard(); requestCuisine();
+                                requestCuisine();
                             } else {
                                 alert("Invalid filters!")
                             }

@@ -40,7 +40,28 @@ h2 {
     font-size: 16px;
     width: 80%;
 }
+
+/*
+*   Select 
+*/
  
+.filter-choice {
+    text-align: end;
+}
+.filter-choice select {
+    border: none;
+    appearance: none;
+    text-align: end;    
+    transition: all 300ms;
+    cursor: pointer;
+}
+.filter-choice select:hover {
+    transform: scale(1.1);
+    color:rgb(125, 210, 250);
+}
+.filter-choice select:focus {
+    outline: 0;
+}
 
 /*
 *   Number input
@@ -109,6 +130,15 @@ h2 {
     border: none;
     text-align: center;
     width: 5ch;
+    transition: all 300ms;
+    cursor: pointer;
+}
+.filter-range input[type=number]:hover {
+    color:rgb(125, 210, 250);
+    transform: scale(1.05);
+}
+.filter-range input[type=number]:focus {
+    outline: 0;
 }
 
 
