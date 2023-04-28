@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 //import { useHistory } from "react-router-dom";
 
-const BASEURL = "https://toomspawt.pythonanywhere.com";
+const BASEURL = "https://toomspawt.pythonanywhere.com/api";
 //const BASEURL = "http://127.0.0.1:8000/api";
 const AuthContext = createContext();
 
