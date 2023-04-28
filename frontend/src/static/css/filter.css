@@ -316,3 +316,41 @@ input[type=checkbox]:checked + .check-box::before, .check-box.checked::before {
     background-position: 0%;
     color: #fff;
 }
+.button-previous {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0px;
+    right: 0px;
+    width: fit-content;
+    top: -50px;
+    z-index: -1;
+    transition: all 300ms ease-in-out;
+}
+.button-previous__active {
+    background: rgb(253, 155, 26);
+    color: #333;
+}
+.button-previous__active:hover {
+    transform: translateY(-10px);
+    color: #333;
+}
+.button-previous__active:active {
+    transform: scale(0.95);
+}
+.button-previous__inactive {
+    cursor:all-scroll;
+    color: white;
+    background-color: rgb(128, 128, 128, 0.5);
+}
+
+@media screen
+  and (max-device-width: 480px)
+  and (orientation: portrait){
+    .button-previous {
+        top: -35px;
+    }
+    .button-previous:hover {
+        transform: translateY(-5px);
+    }
+}

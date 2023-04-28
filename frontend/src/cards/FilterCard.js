@@ -4,6 +4,8 @@ import useAxios from "../utils/useAxios";
 import "../static/css/filter.css"
 import ReactCardFlip from 'react-card-flip';
 
+let previousCuisines = [];
+
 function FilterRange(props) {
     return (
         <div className="filter-range">
@@ -36,16 +38,6 @@ function FilterRange(props) {
 function FilterTF(props) {
     //console.log(props.value);
     return (
-        /*
-        <li className="tg-list-item">
-            <input 
-                className="tgl tgl-flip" type="checkbox"
-                id={props.id} checked={props.value}
-                onChange={props.onChange}
-            />
-            <label className="tgl-btn" data-tg-off="Nope" data-tg-on="Yeah!" htmlFor={props.id}></label>
-        </li>
-        */
         <div className="form-checkbox">
             <input 
                 type="checkbox"
@@ -91,7 +83,9 @@ function FilterCard({ user }) {
     let [cuisine, setCuisine] = useState("");
     const flipCard = () => {
         setShowCuisine(!showCuisine);
+        console.log(showCuisine)
     }
+
     const validateFilters = () => {
         return filters.caloriesMax >= filters.caloriesMin;
     }
@@ -123,8 +117,14 @@ function FilterCard({ user }) {
         fetch(`https://api.edamam.com/api/recipes/v2?${queryString}`)
         .then(response => response.json())
         .then(data => {
+            previousCuisines.push(cuisine);
             setCuisine(data.hits[0].recipe);
         })
+    }
+
+    // render the previous cuisine
+    const requestPrevious = () => {
+        setCuisine(previousCuisines.pop());
     }
 
     // allow user to set current filters as defaults
@@ -276,6 +276,8 @@ function FilterCard({ user }) {
             <CuisineCard
                 cuisine={cuisine}
                 flipCard={flipCard}
+                previousCuisines={previousCuisines}
+                requestPrevious={requestPrevious}
             />
         </ReactCardFlip>
     )   

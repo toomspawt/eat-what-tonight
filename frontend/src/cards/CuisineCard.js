@@ -168,6 +168,17 @@ function CuisineCard(props) {
     return (
         <div>
             <div className="card card-container-large info-card" style={{"padding": "0px"}}>
+                <p 
+                    className={"filter-btn button-previous button-previous__" + ((props.previousCuisines.length > 1) ? "active" : "inactive")}
+                    onClick={() => {
+                        if (props.previousCuisines.length > 1) props.requestPrevious();
+                    }}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    </svg>
+                    <span style={{"marginLeft": "10px"}}>Previous Cuisine</span>
+                </p>
                 <div className="recipe-image">
                     <img src={cuisine.image} alt={cuisine.label}/>
                 </div>
@@ -196,8 +207,12 @@ function CuisineCard(props) {
                     <div className="filter-btn-group">
                         <p className="filter-btn button-set" onClick={props.flipCard}>Don't like this?</p>
                         <a href={cuisine.url} className="filter-btn button-request" target="_blank" rel="noreferrer"> 
-                            recipe   
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
+                            recipe
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
+                                fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16"
+                                style={{"marginLeft": "5px"}}
+                            >
                                 <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
                             </svg>
                         </a>
