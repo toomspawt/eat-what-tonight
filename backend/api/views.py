@@ -42,6 +42,9 @@ def filterEndPoint(request):
             'vegan': request.user.vegan,
             'alcoholFree': request.user.alcoholFree,
             'dairyFree': request.user.dairyFree,
+            'mealType': request.user.mealType,
+            'dishType': request.user.dishType,
+            'cuisineType': request.user.cuisineType,
         }
         return Response({'response': data}, status=status.HTTP_200_OK)
     elif request.method == 'POST':
@@ -51,6 +54,9 @@ def filterEndPoint(request):
         request.user.vegan = filters['vegan']
         request.user.alcoholFree = filters['alcoholFree']
         request.user.dairyFree = filters['dairyFree']
+        request.user.mealType = filters['mealType']
+        request.user.dishType = filters['dishType']
+        request.user.cuisineType = filters['cuisineType']
         request.user.save()
-        return Response({'response': "Successful!"}, status=status.HTTP_200_OK)
+        return Response({'response': 'Successful'}, status=status.HTTP_200_OK)
     return Response({}, status.HTTP_400_BAD_REQUEST)

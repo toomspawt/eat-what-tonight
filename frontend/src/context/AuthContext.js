@@ -2,6 +2,8 @@ import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 //import { useHistory } from "react-router-dom";
 
+const BASEURL = "https://toomspawt.pythonanywhere.com";
+//const BASEURL = "http://127.0.0.1:8000/api";
 const AuthContext = createContext();
 
 export default AuthContext;
@@ -21,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     //const history = useHistory();
 
     const loginUser = async (username, password) => {
-        const response = await fetch("https://toomspawt.pythonanywhere.com/api/token/", {
+        const response = await fetch(BASEURL + "/token/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -44,7 +46,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const registerUser = async (username, password, password2) => {
-        const response = await fetch("https://toomspawt.pythonanywhere.com/api/register/", {
+        const response = await fetch(BASEURL + "/register/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -56,6 +56,9 @@ function FilterCard({ user }) {
         vegan: false,
         alcoholFree: false,
         dairyFree: true,
+        mealType: "lunch",
+        dishType: "salad",
+        cuisineType: "Asian",
     });
 
     // if authenticated, get user's filters
@@ -66,8 +69,8 @@ function FilterCard({ user }) {
                 try {
                     const response = await api.get("/filter/");
                     setFilters({...response.data.response});
-                    console.log("philter---", filters)
-                    //console.log(response.data.response)
+                    //console.log("philter---", filters)
+                    console.log(response.data.response)
                     //console.log(filters)
                 } catch {
                     console.log("Something went wrong");
@@ -110,7 +113,10 @@ function FilterCard({ user }) {
             ["random", true],
             ["health", filters.alcoholFree ? "alcohol-free" : ""],
             ["health", filters.dairyFree ? "dairy-free" : ""],
-            ["health", filters.vegan ? "vegan" : ""]
+            ["health", filters.vegan ? "vegan" : ""],
+            ["cuisineType", filters.cuisineType ? filters.cuisineType : ""],
+            ["mealType", filters.mealType ? filters.mealType : ""],
+            ["dishType", filters.dishType ? filters.dishType : ""]
         ]);
 
         console.log(`https://api.edamam.com/api/recipes/v2?${queryString}`);
