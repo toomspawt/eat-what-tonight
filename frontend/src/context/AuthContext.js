@@ -58,7 +58,8 @@ export const AuthProvider = ({ children }) => {
             })
         });
         if (response.status === 201) {
-            alert("Registered!")
+            alert("Registered!");
+            return("Registered");
             //history.push("/login");
         } else {
             const errors = await response.json();
@@ -71,7 +72,7 @@ export const AuthProvider = ({ children }) => {
 
     const logoutUser = () => {
         setAuthTokens(null);
-        setUser(null);
+        setUser(null);     
         localStorage.removeItem("authTokens");
         //history.push("/");
     };

@@ -12,11 +12,12 @@ export default function RegisterCard(props) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        try {
-            registerUser(username, password, password2);
-        } catch(err) {
-            console.log(err);
-        }
+        registerUser(username, password, password2)
+        .then((data) => {
+            if (data) setRegister();
+        })
+        .catch((e) => console.log(e));
+
     };
 
     const passwordCheckLength = () => {return password.length >= 8}
@@ -28,7 +29,7 @@ export default function RegisterCard(props) {
         <div></div>
     ) : (
         <div className="card card-container">
-            <form className="form-signin" onSubmit={(e) => {handleSubmit(e); setRegister();}}>
+            <form className="form-signin" onSubmit={(e) => {handleSubmit(e);}}>
                 <h3 style={{"textAlign": "center"}}>Create an account</h3>
                 <hr />
                 <input
@@ -80,7 +81,7 @@ export default function RegisterCard(props) {
                     required
                 />
                 <p className="text-danger">{(password2 !== password && password2.length > 0) ? "Passwords do not match" : ""}</p>
-                <button className="btn btn-lg btn-primary btn-block btn-signin">Register</button>
+                <button className="btn btn-lg btn-primary btn-block btn-signin" >Register</button>
                 <p href="#" className="forgot-password" onClick={setRegister}>Already have an account?</p>
             </form>
         </div>

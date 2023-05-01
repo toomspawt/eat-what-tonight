@@ -11,7 +11,11 @@ function UserCard() {
     e.preventDefault();
     const username = e.target.username.value;
     const password = e.target.password.value;
-    username.length > 0 && loginUser(username, password);
+    if (!(username.length > 0 && password.length > 0)) {
+      alert("Invalid username or password. Please try again");
+    } else {
+      loginUser(username, password);
+    }
   };
 
   const renderLogin = () => {

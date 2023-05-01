@@ -51,10 +51,8 @@ function FilterRange(props) {
             <input 
                 id={props.id}
                 type="number" 
-                min={0}
-                max={1000}
-                step={1} 
-                value={props.value}
+                min={0} max={1000} step={1} 
+                value={Number(props.value).toString()}
                 onChange={props.onChange}
             />
             <svg 
@@ -73,7 +71,7 @@ function FilterTF(props) {
     return (
         <div className="form-checkbox">
             <input 
-                type="checkbox"
+                type="checkbox" 
                 id={props.id} checked={props.value}
                 onChange={props.onChange}
             />
@@ -83,7 +81,8 @@ function FilterTF(props) {
 }
 
 function FilterCard({ user }) {
-    let [filters, setFilters] = useState({
+    console.log("render");
+    const defaultFilters = {
         caloriesMin: 100,
         caloriesMax: 2000,
         vegan: false,
@@ -92,10 +91,12 @@ function FilterCard({ user }) {
         mealType: "all",
         dishType: "all",
         cuisineType: "all",
-    });
+    }
+    let [filters, setFilters] = useState(defaultFilters);
 
     // if authenticated, get user's filters
     const api = useAxios();
+    
     useEffect(() => {
         if (user) {
             const fetchData = async () => {
@@ -110,9 +111,12 @@ function FilterCard({ user }) {
                 }
             };
             fetchData();
+        } else {
+            setFilters(defaultFilters);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
+    
     
     // show/hide cuisine card
     let [showCuisine, setShowCuisine] = useState(false);
